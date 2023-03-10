@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link rel="stylesheet" href="./styles.css"> -->
+        <title>云班课-我的班课</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            #root {
+                display: flex;
+                flex-direction: column;
+                font-size: 14px;
+            }
+
+            header,
+            footer {
+                flex: 0 0 5vh;
+                background-color: #1d99c2;
+                color: #fff;
+            }
+
+            main {
+                flex: 1 1 auto;
+                width: 90vw;
+                margin: 0 auto;
+                display: flex;
+            }
+
+            .left,
+            .right {
+                height: 90vh;
+                background-color: darkcyan;
+                flex: 0 0 5vw;
+            }
+
+            .center {
+                flex: 1 1 auto;
+                background-color: #bdebfa;
+            }
+
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .col-3 {
+                flex: 0 0 25%;
+            }
+
+            .course-box {
+                height: 320px;
+                background-color: #bdebfa;
+                padding: 5px;
+                cursor: pointer;
+                position: relative;
+            }
+
+            .course-box .avatar {
+                position: absolute;
+                top: -40px;
+                left: 35%;
+                width: 80px;
+                height: 80px;
+                z-index: 99;
+            }
+            .course-box .avatar img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+
+            .course-box img {
+                z-index: 1;
+                width: 100%;
+                height: 60%;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                position: relative;
+            }
+            .course-box .course-info {
+                padding: 10px;
+                height: 40%;
+                background-color: #fff;
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+
+            .course-box .controller {
+                display: none;
+                position: absolute;
+                bottom: 30px;
+                width: 97%;
+                height: 40px;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: none;
+                justify-content: center;
+                align-items: center;
+            }
+            .course-box .controller span {
+                height: 30px;
+                width: 120px;
+                border: 1px solid #fff;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 12px;
+                margin: 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .course-box .controller span:hover {
+                background-color: #fff;
+                color: #000;
+            }
+
+            .course-box .image:hover {
+                z-index: -1;
+                transform: translateY(10px);
+                transition: all 1s;
+                z-index: 200;
+            }
+
+            .course-box:hover .course-box img {
+                transform: translateY(10px);
+                transition: all 1s;
+            }
+
+            /* 滑动图片下移 */
+            .course-box:hover .avatar {
+                top: 10px;
+                transition: all 1s;
+                z-index: 10000;
+            }
+
+            /* 滑动盒子下移 */
+            .course-box:hover .course-info {
+                transform: translateY(10px);
+                transition: all 1s;
+            }
+            .course-box:hover .controller {
+                display: flex;
+                transition: all 1s;
+            }
+
+            .course-class {
+                font-size: 16px;
+                color: #595252;
+            }
+
+            .meta {
+                font-size: 13px;
+                color: #bfb4b4;
+                padding-top: 10px;
+            }
+
+            .meta a {
+                color: #3cb7e0;
+                padding-left: 10px;
+                border: none;
+                cursor: pointer;
+                outline: none;
+            }
+
+            .fl {
+                float: left;
+            }
+
+            .fr {
+                float: right;
+            }
+            .red{
+                color: red !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="root">
+            <header></header>
+
+            <main>
+                <div class="left flex"></div>
+                <div class="center">
+                    <div class="row">
+                        <div class="col-3 course-box" v-for="course in courses" :key="course.id">
+                            <div class="avatar">
+                                  <img :src="course.courseTeacher.avatar" alt="" />
+                            </div>
+                            <div class="image">
+                                <template v-if="course.finished">
+                                    <img :src="course.courseCover" alt="" />
+                                </template>
+                                <template v-else>
+                                    <img v-else class="active" src="https://static-cdn-oss.mosoteach.cn/mosoteach2/common/images/index_creat_icon_end.png" />
+                                </template>
+                            </div>
+                            <div class="controller" v-show="course.finished">
+                                <span>发起签到</span>
+                                <span>课堂表现</span>
+                            </div>
+
+                            <div class="course-info">
+                                <p class="course-class">{{course.courseClass}}</p>
+                                <p class="meta">
+                                    班课号:
+                                    <span>{{course.courseNo}}</span>
+                                </p>
+                                <div>
+                                    <p class="meta fl">{{course.semester}}</p>
+                                    <p class="meta fr" >
+                                      <a>
+                                        <template v-if="course.finished">
+                                          <span class="red">进入</span>
+                                        </template>
+                                        <template v-else>
+                                          <span @click="handleDelete(course)">删除</span>
+                                        </template>
+
+                                      </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right"></div>
+            </main>
+
+            <footer></footer>
+        </div>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="./main.js"></script>
+        <script>
+            const mountedApp = app.mount('#root');
+        </script>
+    </body>
+</html>

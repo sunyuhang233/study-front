@@ -7,40 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-     <div class="nav-bar"></div>
-                <div class="product-container">
-                        <div class="product-image">
-                                <!-- 属性绑定 v-bind 语法糖: -->
-                                <img :src="image" :alt="product" />
-                            </div>
-                        <div class="product-info">
-                                <!-- {{}} 插值语法 -->
-                                <h1>{{product}}</h1>
-                                <p>{{description}}</p>
-    
-                                <!-- 条件渲染 v-if v-else-if v-else-->
-                                <!--
-                                                     v-if 和 v-show 的区别
-                                                     v-if页面不会存在该节点
-                                                     v-show 页面存在该节点，只是display:none
-                                                -->
-                                <p v-if="inStock">In Stock</p>
-                                <p v-else>Out of Stock</p>
-                                <p v-if="inventory >=10">In Stock</p>
-                                <p v-else-if="inventory > 0 && inventory < 10">Low Stock</p>
-                                <p v-else>Out of Stock</p>
-                                <ul>
-                                        <!-- 列表渲染 v-for 需要加key-->
-                                        <li v-for="item in details" :key="item">{{item}}</li>
-                                    </ul>
-                                <!-- 倒计时按钮 -->
-                                <button                       :disabled="!inStock"                        
-                @click="addToCart"                    >
-                                   <p :class="!inStock? 'red' :'blue'">倒计时按钮</p>
-                                    <p v-if="!inStock">{{totalTime}}</p>
-                                    <p v-else>还没有到指定时间</p>
-                                    </button>
-                            </div>
-
+   
 </body>
 </html>

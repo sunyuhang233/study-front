@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="phone.css" />
+    </head>
+    <body>
+        <div id="app">
+        <div class="center" v-for="item in course">
+            <div class="big">
+                <div class="left">
+                    <img
+                       :src="item.url"
+                        alt=""
+                    />
+                </div>
+                <div class="right">
+                    <p class="title">{{item.name}}</p>
+                    <span class="name">
+                        <p class="n">{{item.author}}</p>
+                        <p class="c">{{item.level}}</p>
+                    </span>
+                    <span class="controller">
+                        <p>签到</p>
+                        <p>举手</p>
+                        <p>提问</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="./main.js"></script>
+
+        <script>
+            //    挂载
+            const mountedApp = app.mount('#app');
+        </script>
+    </body>
+</html>

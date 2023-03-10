@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>intro-to-vue3</title>
-        <link rel="stylesheet" href="" />
-    </head>
-  
-    <body>
-        <div id="app">
-            <!-- {{}} 插值语法 -->
-            <h1>{{product}}</h1>
-            <p>{{description}}</p>
-            <div class="product-image">
-                <!-- 属性绑定 v-bind 语法糖: -->
-                <img :src="image" />
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="nav-bar"></div>
+
+        <div class="cart">Cart({{ cart }})</div>
+
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <img :src="image" />
+                </div>
+                <div class="product-info">
+                    <h1>{{ product }}</h1>
+                    <p v-if="inStock">In Stock</p>
+                    <p v-else>Out of Stock</p>
+                    <ul>
+                        <li v-for="detail in details">{{ detail }}</li>
+                    </ul>
+                    <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+                    <button class="button" @click="addToCart">Add to Cart</button>
+                    <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">
+                        {{ variant.color }}
+                    </div>
+                </div>
             </div>
         </div>
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        <script src="./main.js"></script>
+    </div>
 
-     
-        <script>
-            //    挂载 
-            const mountedApp=app.mount("#app")
-        </script>
-    </body>
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Import App -->
+    <script src="../main.js"></script>
+
+    <!-- Mount App -->
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
+</body>
+
 </html>

@@ -286,20 +286,25 @@ body {
 
 /* image伪元素 */
 .isShow .box .image ::after {
-    content: '已结课';
+    content: '';
     position: absolute;
     color: red;
     top: 0;
     z-index: 100;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
+
     bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: url("https: //static-cdn-oss.mosoteach.cn/mosoteach2/common/images/index_creat_icon_end.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 999;
+    height: 600px;
+    width: 600px;
 }
 
 .isShow .box .image img {
