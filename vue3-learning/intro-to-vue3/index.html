@@ -5,9 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>intro-to-vue3</title>
-        <link rel="stylesheet" href="" />
+        <link rel="stylesheet" href="./styles.css" />
     </head>
-  
+
     <body>
         <div id="app">
             <!-- {{}} 插值语法 -->
@@ -15,16 +15,19 @@
             <p>{{description}}</p>
             <div class="product-image">
                 <!-- 属性绑定 v-bind 语法糖: -->
-                <img :src="image" />
+                <img :src="image" :alt="product" />
             </div>
+            <a :href="url" target="_blank">Vue3官网</a>
+            <!-- 条件渲染 v-if v-else-if v-else-->
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
         </div>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="./main.js"></script>
 
-     
         <script>
-            //    挂载 
-            const mountedApp=app.mount("#app")
+            //    挂载
+            const mountedApp = app.mount('#app');
         </script>
     </body>
 </html>
