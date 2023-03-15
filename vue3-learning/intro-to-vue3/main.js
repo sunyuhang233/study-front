@@ -3,7 +3,7 @@ const app = Vue.createApp({
         return {
             product: 'Socks',
             description: 'A warm fuzzy pair of socks.',
-            image: './images/socks_green.jpg',
+            image: './assets/images/socks_green.jpg',
             url: 'https://www.javascriptc.com/vue3js/guide/installation.html#cdn',
             inStock: true,
             inventory: 10,
@@ -49,8 +49,8 @@ const app = Vue.createApp({
             ],
             cart: 1,
             variants: [
-                { id: 2234, color: 'green', image: './images/socks_green.jpg' },
-                { id: 2235, color: 'blue', image: './images/socks_blue.jpg' },
+                { id: 2234, color: 'green', image: './assets/images/socks_green.jpg' },
+                { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg' },
             ],
         };
     },
@@ -86,7 +86,15 @@ const app = Vue.createApp({
         addToCart() {
             this.cart += 1;
         },
+        removeFromCart() { 
+            this.cart -= 1;
+            if(this.cart < 0) {
+                this.inStock = false;
+                this.cart = 0;
+            }
+        },
         updateImage(variantImage) {
+            console.log(variantImage);
             this.image = variantImage;
         },
     },
