@@ -1,7 +1,14 @@
 app.component('product-display', {
+        props: {
+        num: {
+            type: Number,
+            }
+    },
     template: `
      <div class="cart">Cart({{ cart }})</div>
        <div class="product-display">
+       <p>{{ isTrue ? '99.99' : '免费' }}</p>
+       <p>{{ text }}</p>
     <div class="product-container">
                 <div class="product-image">
                     <img v-bind:src="image" />
@@ -26,14 +33,13 @@ app.component('product-display', {
                     <div class="color-circle active"></div>
 
                     <div>价格为:{{totalPrice}}</div>
+                    <p>{{show}}<p>
                     <div>
-
                     </div>
                 </div>
             </div>
             </div>
             `,
-
     data() {
         return {
             product: 'Socks',
@@ -135,5 +141,14 @@ app.component('product-display', {
         totalPrice() {
             return this.cart * 200 + '$';
         },
+        show() {
+            return this.isTrue;
+        },
+        text() {
+            if (this.num > 500) {
+                return '库存充足';
+            }
+            return '库存不足';
+        }
     },
 });
