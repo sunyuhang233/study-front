@@ -19,17 +19,16 @@
             justify-content: center;
             align-items: center;
             width: 100vw;
-            overflow: hidden;
         }
 
         .first {
             color: lightslategray;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .send {
             color: lightseagreen;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .number {
@@ -82,18 +81,37 @@
             font-size: 20px;
             cursor: pointer;
         }
+
+        .list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .list:hover {
+            background-color: lightskyblue;
+            border: none;
+            color: #fff;
+            /* transform: scale(1.1); */
+            transform: translate3d(0, -10px, 0);
+        }
+
+        .first {
+            margin-top: 200px;
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <h1>组件化开发</h1>
-        <div class="first">
-            <t-object :object="apple" class="item"></t-object>
-        </div>
-        <div class="send">
-            <t-list :list="goods" @delete-item="handleOpen"></t-list>
-        </div>
+        <div class="first"></div>
+        <product-detail :object="apple" class="item"></product-detail>
+        <product-list :list="goods" @delete-item="handleOpen"></product-list>
 
 
     </div>

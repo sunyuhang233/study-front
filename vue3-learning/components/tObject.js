@@ -1,4 +1,4 @@
-app.component('t-object', {
+app.component('product-detail', {
     props: {
         object: {
             type: Object,
