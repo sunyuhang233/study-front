@@ -33,7 +33,7 @@ var num2 = -99999 * base;
 console.log(num1); // 输出：Infinity
 console.log(num2); // 输出：-Infinity
 
-
+// 0b 二进制 0o 八进制 0x 十六进制
 var num1 = 0b101; // 二进制
 var num2 = 0o10; // 八进制
 var num3 = 0x10; // 十六进制

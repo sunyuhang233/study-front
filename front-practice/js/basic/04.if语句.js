@@ -84,7 +84,7 @@ if (score < 60) {
 
 // 判断一个数是不是偶数
 function isEven(num) {
-    if (num % 2 == 0) {
+    if (num % 2 === 0) {
         console.log(num + '是偶数');
     } else {
         console.log(num + '是奇数');

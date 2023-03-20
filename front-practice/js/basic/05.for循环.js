@@ -42,7 +42,7 @@ var len;
 var i;
 
 for (i = 2, len = 17 -1; i <= len; i++){
-    if (num % i == 0) {
+    if (num % i === 0) {
         flag = true;
         break;
     }

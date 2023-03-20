@@ -1,5 +1,4 @@
 var number = 999;
-
 console.log(number);
 
 var result = 0;
