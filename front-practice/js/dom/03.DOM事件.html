@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .change-bg {
+            border: 1px solid black;
+            height: 40px;
+            width: 120px;
+            border-radius: 2px;
+            margin-top: 16px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .change-bg:active {
+            background: #efefef;
+        }
+
+        .box {
+            width: 120px;
+            height: 120px;
+            background: #4caf50;
+            border-radius: 60px;
+        }
+
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+
+
+        .btn2 {
+            border: 1px solid #4caf50;
+            font-size: 22px;
+            padding: 8px 12px;
+            color: #4caf50;
+            outline: none;
+        }
+
+        .btn2:active {
+            background: #eee;
+        }
+
+
+        .btn3 {
+            border: 1px solid #4caf50;
+            font-size: 14px;
+            padding: 8px 12px;
+            color: #4caf50;
+            outline: none;
+        }
+
+        .btn3:active {
+            background: #eee;
+        }
+
+        input {
+            padding: 10px 12px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        p {
+            font-size: 22px;
+        }
+
+        .btn4 {
+            border: 1px solid #4caf50;
+            font-size: 14px;
+            padding: 8px 12px;
+            color: #4caf50;
+            outline: none;
+        }
+        .btn4:active {
+            background: #eee;
+        }
+
+
+        .btn5 {
+            border: 1px solid #4caf50;
+            font-size: 14px;
+            padding: 8px 12px;
+            color: #4caf50;
+            outline: none;
+        }
+        .btn5:active {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<button class="change-bg">戳这里改变背景色</button>
+<!--行内直接写事件-->
+<div class="box1" onclick="alert('耶耶耶耶耶！')"></div>
+<button class="btn2">
+    我是一个可以改变一切的按钮
+</button>
+
+
+<input type="text">
+
+<button class="btn3">按钮</button>
+<p>1</p>
+
+
+<button class="btn4">按钮 </button>
+<p></p>
+
+
+<button class="btn5">按钮</button>
+<script>
+    /**
+     * 事件是你在编程时系统内发生的动作或者发生的事情，系统通过它来告诉你，在愿意的情况下您可以以某种方式对它做出回应。例如：如果在网页上单击一个按钮，你可能想通过显示一个信息框来响应这个动作。本篇我们将围绕事件讨论一些重要的概念，并且观察它们在浏览器上是怎么工作的。—— MDN
+     * */
+
+    var boxEle = document.querySelector('.box');
+    var btnEle = document.querySelector('.change-bg');
+
+    // 随机生成一个颜色 具体实现可以不管
+    function getColor() {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).slice(-6);
+    }
+
+    btnEle.onclick = function () {
+        boxEle.style.backgroundColor = getColor();
+    };
+
+
+    var btn2 = document.querySelector('.btn2');
+    var total = 1;
+    btn2.onclick = function () {
+        var text = btn2.innerText;
+        btn2.innerText = text.replace('一切', '世界');
+        total++;
+        if (total >= 5) {
+            console.log("事件结束")
+            btn2.onclick = null;
+        }
+    };
+
+
+    var btn3 = document.querySelector('.btn3');
+    var input = document.querySelector('input');
+    var p = document.querySelector('p');
+    var total = 1;
+
+    btn3.addEventListener('click', function () {
+        input.value = input.value.split('').reverse().join('');
+        btn3.value = input.value;
+        p.innerText = input.value;
+    });
+    input.addEventListener('keyup', function () {
+        btn3.innerText = input.value;
+    });
+
+
+    var btn4 = document.querySelector('.btn4');
+    var p = document.querySelector('p');
+    var total = 1;
+    btn4.addEventListener('click', function() {
+        btn4.innerText = ++total;
+    });
+    btn4.addEventListener('click', function() {
+        p.innerText = total;
+    });
+
+    var btn5 = document.querySelector('.btn5');
+    var total = 1;
+    function fn() {
+        btn5.innerText = ++total;
+        if (total > 5) {
+            btn5.removeEventListener('click', fn);
+        }
+    }
+    btn5.addEventListener('click', fn);
+</script>
+</body>
+</html>
