@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  .show {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+</style>
+<body>
+<div id="one"></div>
+<form>
+  <div>
+    <label>
+      <input type="checkbox" name="skill" checked="checked" value="JavaScript">
+      JavaScript
+    </label>
+
+    <label>
+      <input type="checkbox" name="skill" value="c++">
+      C++
+    </label>
+
+    <label>
+      <input type="checkbox" name="skill" checked="checked" value="Java">
+      Java
+    </label>
+  </div>
+</form>
+<div id="result"></div>
+
+
+<div>
+  <p>我是第一个段落。</p>
+  <p>我是第二个段落。</p>
+  <p>我是第三个段落。</p>
+  <p>我是第四个段落。</p>
+  <p>我是第五个段落。</p>
+</div>
+<div id="result" style="color: #4caf50;"></div>
+
+
+
+<div>
+  <div class="odd">1</div>
+  <div class="even">2</div>
+  <div class="odd">3</div>
+  <div class="even">4</div>
+  <div class="odd">5</div>
+  <div class="even">6</div>
+</div>
+<div id="result"></div>
+
+
+<div id="tip">
+  大甩卖！！一双袜子 <strong>三</strong> 块！三双袜子只要 <strong>十</strong> 块！！</div>
+</div>
+
+
+<ul>
+  <li>我是列表1</li>
+  <li>我是列表2</li>
+  <li>我是列表3</li>
+  <li>我是列表4</li>
+</ul>
+
+<button class="change">变！</button>
+
+
+<p class="tip show">我要早睡早起，不能再熬夜了。</p>
+<button class="toggle">切换</button>
+
+
+<label>
+  <input type="checkbox" class="checkbox">
+  爱我别走
+</label>
+
+<div style="margin-top: 16px;">
+  <button class="toggle1">切换!</button>
+</div>
+
+
+
+<div>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</div>
+
+<script>
+
+  /***
+   * 操作 DOM 是前端程序员的基本功，也是编写网页的重要知识之一。
+   * 获取 DOM 节点的方法有很多，部分方法返回的是 NodeList 或 HTMLCollection 类型，而不是数组，不能像操作数组一样操作这些集合，转换成数组可以更方便的利用数组的原生方法对其进行操作。
+   * 操作节点的时候，特别是动态渲染的节点，需要做空判断，防止程序报错中断执行。
+   */
+
+
+  var one=document.getElementById('one');
+  one.innerHTML=`<a href="http://www.baidu.com">百度</a>`
+
+
+    var skills = [];
+    var skillList = document.getElementsByName('skill');
+    for (var i = 0, len = skillList.length; i < len; i++) {
+      if (skillList[i].checked) {
+        skills.push(skillList[i].value);
+      }
+    }
+
+
+  document.getElementById('result').innerHTML = '选中的技能：' + skills.join('、');
+  var pList = document.getElementsByTagName('p');
+  var res = [];
+  var i, len;
+  for (i = 0, len = pList.length; i < len; i++) {
+    res.push(pList[i].innerText);
+  }
+  document.getElementById('result').innerHTML = '所有 p 标签的内容：<br>' + res.join('<br>');
+
+
+  var odd = document.getElementsByClassName('odd');
+  var res = [];
+  var i, len;
+  for (i = 0, len = odd.length; i < len; i++) {
+    res.push(odd[i].innerText);
+  }
+  var resultElement = document.getElementById('result');
+  resultElement.innerHTML = '所有奇数：<br>' + res.join('<br>');
+
+
+  var tip = document.querySelector('#tip');
+  tip.style.color = 'red';
+
+
+  var lis = document.querySelectorAll('li');
+  var btn = document.querySelector('.change');
+  btn.addEventListener('click', function() {
+    lis.forEach(function(li, index) {
+      li.innerText = index;
+    });
+  });
+
+
+  var toggleBtn = document.querySelector('.toggle');
+  var tipEle = document.querySelector('.tip');
+
+  toggleBtn.addEventListener('click', function() {
+    var className = tipEle.className;
+    if (className.indexOf('show') > -1) {
+      tipEle.className = 'tip hidden';
+      return;
+    }
+    tipEle.className = 'tip show';
+  });
+
+
+
+  var checkbox = document.querySelector('.checkbox');
+  var toggleBtn = document.querySelector('.toggle1');
+
+  toggleBtn.onclick = function() {
+    var checked = checkbox.getAttribute('checked');
+    if (checked) {
+      checkbox.removeAttribute('checked', '');
+    } else {
+      checkbox.setAttribute('checked', 'checked');
+    }
+  };
+
+
+
+  var lis = document.querySelectorAll('div ul li');
+  // 伪数组转换为数组
+  // Array.from  Array.from() 方法从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实。(MDN)
+  // Array.prototype.slice.call
+  // ...扩展运算符
+  var list= Array.from(lis);
+  console.log(list)
+  list.forEach(function(item, index) {
+    console.log(item)
+    item.innerText ="one"+ index;
+  });
+
+  var lisArray2 = Array.prototype.slice.call(lis);
+  console.log(lisArray2)
+
+  console.log([...lis])
+
+
+</script>
+
+</body>
+</html>
