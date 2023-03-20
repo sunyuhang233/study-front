@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .btn {
+            border: 1px solid #4caf50;
+            padding: 8px 12px;
+            min-width: 200px;
+            color: #4caf50;
+            background: white;
+            outline: none;
+        }
+
+        .btn:active {
+            background: #4caf50;
+            color: white;
+        }
+
+        input {
+            width: 200px;
+            padding: 8px;
+            font-size: 16px;
+            outline: none;
+            border: 1px dashed #4caf50;
+        }
+
+        input:focus {
+            border: 1px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button class="btn">点击我</button>
+</div>
+<div>
+    <input type="text">
+</div>
+
+<script>
+    /**
+     * 使用 new Event 可以创建一个自定义事件，事件名就是构造函数的第一个参数 afterclick，表示点击事件完成后做的事情。
+     * 创建一个自定义事件后需要给 DOM 元素绑定这个事件，只有绑定后才能触发，使用 addEventListener 来绑定事件。
+     * 随后再给按钮绑定点击事件，在事件末尾，即事情做完后，使用 dispatchEvent 触发这个自定义事件。
+     * 自定义事件是需要手动触发的！
+     * Event 构造函数还支持第二个参数，其接受一个对象，可以传递三个属性，都为布尔值：
+     * ● bubbles 默认 false ，表示是否会冒泡
+     * ● cancelable 默认 false ， 表示事件是否可以被取消
+     * ● composed 默认 composed， 表示事件是否会在 Shadow DOM 根节点之外触发。
+     */
+        // var afterClick = new Event('afterclick');
+        // var btnEle = document.querySelector('.btn');
+        // btnEle.addEventListener('afterclick', function () {
+        //     alert('我是点击事件执行完后做的事情');
+        // });
+        // btnEle.onclick = function () {
+        //     alert('我被点击了');
+        //     this.dispatchEvent(afterClick);
+        // };
+
+        // 上面使用 Event 构造函数的例子，将其替换成 CustomEvent 构造函数也是一样可以执行的。
+        //其主要的区别在参数和工作环境上，CustomEvent 是可以在 WebWorker 中被使用的，而 Event 不行。
+        //CustomEvent 可以在构造函数的第二个参数中传递 detail 属性，在事件触发时，事件对象中就会携带这个 detail 属性。
+    var afterClick = new CustomEvent('afterclick');
+    var btnEle = document.querySelector('.btn');
+    btnEle.addEventListener('afterclick', function () {
+        alert('我是点击事件执行完后做的事情，我被改成了 CustomEvent');
+    });
+    btnEle.onclick = function () {
+        alert('我被点击了');
+        this.dispatchEvent(afterClick);
+    };
+
+
+    // var inputEle = document.querySelector('input');
+    //
+    // var onKeyClick = function(e) {
+    //     console.log(e);
+    //     alert('现在输入框内容是：' + e.detail.value + '，触发的键是：' + e.detail.keyCode);
+    // };
+    // inputEle.addEventListener('keyup', (e) => {
+    //     console.log('键盘按键弹起了');
+    //     var keyClick = new CustomEvent('keyclick', {
+    //         detail: {
+    //             value: e.target.value,
+    //             keyCode: e.keyCode,
+    //         },
+    //     });
+    //     inputEle.addEventListener('keyclick', onKeyClick);
+    //     inputEle.dispatchEvent(keyClick);
+    //     inputEle.removeEventListener('keyclick', onKeyClick);
+    // });
+
+
+    // 这里通过 keyup 事件，在事件处理器的最末尾增加了一个 keyclick 事件。这里并没有结合 keydown 来判断按键的落下和弹起，因为一个按键要弹起，必定得先落下，所以只需要监听 keyup。
+    //其实可以看出这段代码比较奇怪，真正的业务场景并不会这样写，会选择直接调用 onKeyClick 函数。
+    var inputEle = document.querySelector('input');
+    var onKeyClick = function (value, keyCode) {
+        alert('现在输入框内容是：' + value + '，触发的键是：' + keyCode);
+    };
+    inputEle.addEventListener('keyup', (e) => {
+        console.log('键盘按键弹起了');
+        onKeyClick(e.target.value, e.keyCode);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .list {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .list .item {
+            width: 100%;
+            border: 1px dashed #4caf50;
+            border-bottom: 0;
+            border-radius: 2px;
+            padding: 16px;
+        }
+
+        .list .item:last-child {
+            border-bottom: 1px dashed #4caf50;
+        }
+
+        .list .item button {
+            border-radius: 2px;
+            font-size: 14px;
+            color: #666;
+            outline: none;
+        }
+
+        .list .item button:active {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<input type="text" class="input-here"/>
+<div class="log"></div>
+
+
+<div class="a">
+    我是第一个节点 a
+    <div class="b">
+        我是第二个节点 b
+        <div class="c">
+            我是第三个节点 c
+            <div class="d">
+                我是第四个节点 d
+                <div class="e">
+                    我是第五个节点 e
+                    <div class="f">
+                        我是最里面的一个元素 f
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="result" style="margin-top: 16px;"></div>
+
+
+<div class="list">
+    <div class="item">
+        <p>一句简单的介绍。</p>
+        <button>点击我删除这条</button>
+    </div>
+
+    <div class="item">
+        <p>两句简单的介绍。两句简单的介绍。</p>
+        <button>点击我删除这条</button>
+    </div>
+</div>
+
+<a href="https://www.baidu.com">前往百度</a>
+
+<div id="ele">点我</div>
+</body>
+
+<script>
+    var inputEle = document.querySelector('.input-here');
+    var logEle = document.querySelector('.log');
+
+    // keydown 事件 会在按下键盘上的任意键时触发
+    // keyup 事件 会在松开键盘上的任意键时触发
+    inputEle.onkeydown = function (event) {
+        var ele = document.createElement('p');
+        ele.innerText = '按下了' + event.keyCode;
+        logEle.appendChild(ele);
+    }
+    inputEle.addEventListener('keyup', function (event) {
+        var ele = document.createElement('p');
+        ele.innerText = '弹起了' + event.keyCode;
+        logEle.appendChild(ele);
+    });
+
+
+    // e.target.className 获取当前点击的类名 事件源 target表示当前事件最终捕获到的目标。
+    var resultEle = document.querySelector('.result');
+    // document.querySelector('.a').addEventListener('click', function (e) {
+    //     resultEle.innerText = '捕获到的元素类名是' + e.target.className;
+    // });
+    // 通过 currentTarget 可以获取到目前触发事件的元素。
+    document.querySelector('.a').addEventListener('click', function (e) {
+        resultEle.innerText = [
+            '当前触发事件的元素的类名是：',
+            e.currentTarget.className,
+            '。当前捕获到的元素类名是：',
+            e.target.className,
+        ].join('');
+    });
+
+    var items = document.querySelectorAll('.list .item');
+    var btns = document.querySelectorAll('.list .item button');
+    // stopPropagation 阻止事件冒泡
+    items.forEach(function(item) {
+        item.addEventListener('click', function() {
+            alert('马上进入到详情');
+        });
+    });
+    btns.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            // 阻止冒泡
+            e.stopPropagation();
+            var parent = btn.parentNode;
+            parent.parentNode.removeChild(parent);
+        });
+    });
+
+    // preventDefault 阻止默认事件
+    var aTag = document.querySelector('a');
+    aTag.onclick = function(e) {
+        e.preventDefault();
+        alert('跳转被终止！');
+    };
+
+    var ele = document.getElementById('ele');
+    ele.onclick = function(e) {
+        alert(e); // undefined
+        alert(window.event);
+    }
+</script>
+
+</html>

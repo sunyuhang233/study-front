@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .list .item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #4caf50;
+            padding: 8px 0;
+        }
+
+        .list .item .caption {
+            font-weight: 700;
+        }
+
+        .list .item .operates .delete {
+            border: 1px solid rgb(177, 107, 107);
+            color: rgb(207, 72, 72);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .outer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgb(0, 0, 0);
+        }
+
+        .outer .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 100px;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+        }
+
+        input {
+            border: 1px solid #eee;
+            padding: 4px 8px;
+            min-width: 300px;
+            font-size: 14px;
+            height: 40px;
+            display: block;
+            margin: 0 auto;
+            outline: none;
+        }
+
+        .result {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="list">-->
+<!--    <div class="item">-->
+<!--        <div class="content caption">-->
+<!--            今天要做的事情-->
+<!--        </div>-->
+<!--        <div class="operates caption">-->
+<!--            操作-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="item">-->
+<!--        <div class="content">-->
+<!--            吃火锅-->
+<!--        </div>-->
+<!--        <div class="operates">-->
+<!--            <button class="delete">删除</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="item">-->
+<!--        <div class="content">-->
+<!--            写代码-->
+<!--        </div>-->
+<!--        <div class="operates">-->
+<!--            <button class="delete">删除</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<button class="add">增加一项</button>-->
+
+
+<!--<div class="outer">-->
+<!--    <div class="text">100x200</div>-->
+<!--</div>-->
+
+
+<div>
+    <input type="text" />
+    <div class="result"></div>
+</div>
+</body>
+<script>
+    // var listEle = document.querySelector('.list');
+    // var deleteEle = document.querySelectorAll('.delete');
+    //
+    // deleteEle.forEach(function(el) {
+    //     el.addEventListener('click', function() {
+    //         console.log('开始删除...');
+    //
+    //         el.setAttribute('disabled', 'disabled');
+    //         el.style.color = 'rgb(226, 174, 174)';
+    //         el.style.borderColor = 'rgb(226, 174, 174)';
+    //         el.style.cursor = 'wait';
+    //         el.innerHTML = '处理中...';
+    //
+    //         setTimeout(function() {
+    //             var itemEl = el.parentNode.parentNode;
+    //             listEle.removeChild(itemEl);
+    //             console.log('删除成功');
+    //         }, 1500);
+    //     });
+    // });
+
+
+    // var listEle = document.querySelector('.list');
+    //
+    // listEle.addEventListener('click', function (e) {
+    //     var el = e.target;
+    //
+    //     if (el.className === 'delete') {
+    //         console.log('开始删除...');
+    //
+    //         el.setAttribute('disabled', 'disabled');
+    //         el.style.color = 'rgb(226, 174, 174)';
+    //         el.style.borderColor = 'rgb(226, 174, 174)';
+    //         el.style.cursor = 'wait';
+    //         el.innerHTML = '处理中...';
+    //
+    //         setTimeout(function () {
+    //             var itemEl = el.parentNode.parentNode;
+    //
+    //             listEle.removeChild(itemEl);
+    //
+    //             console.log('删除成功');
+    //         }, 1500);
+    //     }
+    // });
+
+
+    // var listEle = document.querySelector('.list');
+    // var deleteEle = document.querySelectorAll('.delete');
+    //
+    // deleteEle.forEach(function(el) {
+    //     el.addEventListener('click', function() {
+    //         console.log('开始删除...');
+    //
+    //         el.setAttribute('disabled', 'disabled');
+    //         el.style.color = 'rgb(226, 174, 174)';
+    //         el.style.borderColor = 'rgb(226, 174, 174)';
+    //         el.style.cursor = 'wait';
+    //         el.innerHTML = '处理中...';
+    //
+    //         setTimeout(function() {
+    //             var itemEl = el.parentNode.parentNode;
+    //             listEle.removeChild(itemEl);
+    //             console.log('删除成功');
+    //         }, 1500);
+    //     });
+    // });
+    //
+    // document.querySelector('.add').addEventListener('click', function() {
+    //     var el = document.createElement('div');
+    //     el.className = 'item';
+    //     el.innerHTML = [
+    //         '<div class="content">',
+    //         '学习',
+    //         '</div>',
+    //         '<div class="operates">',
+    //         '<button class="delete">删除</button>',
+    //         '</div>',
+    //     ].join('');
+    //     listEle.appendChild(el);
+    // });
+
+
+    // var listEle = document.querySelector('.list');
+    //
+    // listEle.addEventListener('click', function (e) {
+    //     if (e.target.className === 'delete') {
+    //         var el = e.target;
+    //         console.log('开始删除...');
+    //         el.setAttribute('disabled', 'disabled');
+    //         el.style.color = 'rgb(226, 174, 174)';
+    //         el.style.borderColor = 'rgb(226, 174, 174)';
+    //         el.style.cursor = 'wait';
+    //         el.innerHTML = '处理中...';
+    //
+    //         setTimeout(function () {
+    //             var itemEl = el.parentNode.parentNode;
+    //
+    //             listEle.removeChild(itemEl);
+    //
+    //             console.log('删除成功');
+    //         }, 1500);
+    //     }
+    // });
+    //
+    // document.querySelector('.add').addEventListener('click', function () {
+    //     var el = document.createElement('div');
+    //
+    //     el.className = 'item';
+    //
+    //     el.innerHTML = [
+    //         '<div class="content">',
+    //         '学习',
+    //         '</div>',
+    //         '<div class="operates">',
+    //         '<button class="delete">删除</button>',
+    //         '</div>',
+    //     ].join('');
+    //
+    //     listEle.appendChild(el);
+    // });
+
+
+    // var text = document.querySelector('.text');
+    // var timer = false;
+    // var resize = function() {
+    //     if (timer) return; // 判断是不是上一次事件执行完300毫秒内
+    //
+    //     var height = window.innerHeight;
+    //     var width = window.innerWidth;
+    //     text.innerText = width + 'x' + height;
+    //     timer = setTimeout(function () {
+    //         timer = null;
+    //     }, 300);
+    // };
+    // window.addEventListener('resize', resize);
+    //
+    // resize();
+
+
+    var input = document.querySelector('input');
+    var result = document.querySelector('.result');
+    input.addEventListener('input', function(e) {
+        var val = e.target.value;
+        result.innerText = '联想内容：' + val;
+    });
+</script>
+</html>
