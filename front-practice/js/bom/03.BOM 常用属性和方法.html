@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     * 1. 弹出框
+     * BOM 提供了三种弹出框：
+     * ● window.alert 警告框
+     * ● window.prompt 提示框
+     * ● window.confirm 确认框
+     * 三种弹出框都会阻塞 JavaScript 的执行，用户与弹出框交互后才会继续执行代码。
+     * 调用弹出框时可以省略 window。
+     */
+
+    alert('警告框');
+    var result = window.prompt('操作不可逆，请输入 "确认" 以继续操作', '不了不了');
+    if (result === '确认') {
+        alert('操作成功');
+    }
+    var result1 = window.confirm('确定要删除这条信息吗？');
+    if (result1) {
+        alert('删除成功');
+    } else {
+        console.log('已取消');
+    }
+    // 定时器
+    // setTimeout 和 setInterval 都是 BOM 提供的定时器，用于在指定的时间后执行代码。
+    // setTimeout 用于指定时间后执行代码，只执行一次。
+    // setInterval 用于指定时间后重复执行代码，每次执行之间的时间间隔是固定的。
+    // clearInterval 和 clearTimeout 用于取消定时器。
+
+    setInterval(() => {
+        console.log('定时器');
+    }, 1000);
+
+    setTimeout(() => {
+        console.log("我是延迟执行的");
+    }, 9000);
+
+    var num = 0;
+    var timer = setInterval(() => {
+        num++;
+        console.log(num + "加了1");
+        if (num == 10) {
+            clearInterval(timer);
+            console.log("定时器停止了")
+        }
+    }, 1000);
+
+
+    // 当前窗口的尺寸 window.innerWidth 和 window.innerHeight
+    // 当前窗口的滚动条位置 window.pageXOffset 和 window.pageYOffset
+    function logSize() {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        console.log('窗口尺寸：' + width + 'x' + height);
+    }
+
+    logSize();
+    window.addEventListener('resize', function () {
+        logSize();
+    });
+
+
+</script>
+</body>
+</html>

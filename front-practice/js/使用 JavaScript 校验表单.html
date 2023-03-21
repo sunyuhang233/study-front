@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        h3 {
+            margin-top: 0;
+            color: #4caf50;
+        }
+
+        .login {
+            width: 300px;
+            padding: 32px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, .1);
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .form-item {
+            display: flex;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .form-item .title {
+            width: 70px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-item .content {
+            flex: 1;
+        }
+
+        .form-item .content input {
+            width: 100%;
+            border: 0 none;
+            padding: 2px 8px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .login-btn {
+            width: 100%;
+            border: 0 none;
+            background-color: #4caf50;
+            color: white;
+            margin-top: 16px;
+            outline: none;
+            height: 32px;
+        }
+
+        .login-btn:active {
+            background-color: #2da050;
+        }
+    </style>
+</head>
+<body>
+<div class="login">
+    <h3>登入</h3>
+    <label class="form-item">
+        <div class="title">用户名</div>
+        <div class="content">
+            <input autocomplete="off" id="account" class="account" name="account" type="text">
+        </div>
+    </label>
+
+    <label class="form-item">
+        <div class="title">密码</div>
+        <div class="content">
+            <input autocomplete="off" name="pwd" type="password">
+        </div>
+    </label>
+
+    <div>
+        <button class="login-btn" type="button">登入</button>
+    </div>
+</div>
+</body>
+<script>
+    var loginBtn = document.querySelector('.login-btn');
+    var pwdEle = document.querySelector('[name="pwd"]');
+
+    function login(cb) {
+        // 假装登入花了 1 秒
+        setTimeout(function() {
+            alert('登入成功');
+            cb && cb();
+        }, 1000);
+    }
+
+    loginBtn.addEventListener('click', function() {
+        var pwd = pwdEle.value;
+        if (pwd.length < 6 || pwd.length > 16) {
+            alert('密码长度 6-16');
+            return;
+        }
+        login(function() {
+            window.location.href = 'https://www.baidu.com';
+        });
+    });
+</script>
+</html>

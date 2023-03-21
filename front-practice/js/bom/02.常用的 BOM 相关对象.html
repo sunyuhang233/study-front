@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     * ● Location 当前页面地址相关信息，如当前页面地址
+     * ● Navigator 当前浏览器相关信息，如浏览器版本
+     * ● Screen 包含屏幕相关信息，如屏幕的长宽
+     * ● History 浏览器的历史相关信息，如返回上一页
+     * */
+
+    // Location  window.location 只读属性，返回一个 Location 对象，其中包含有关文档当前位置的信息。(MDN)
+    // 给 location 的 href 属性赋值，就可以实现页面的跳转。
+    // window.onload=(()=>{
+    //   location.href="https://www.baidu.com";
+    // })
+
+    // 使用 replace 方法也可以跳转到新页面，但是调用后就无法再后退了。
+    // window .onload=(()=>{
+    //     location.replace("https://www.baidu.com");
+    // })
+
+
+
+    // Navigator 只读属性 Window.navigator 会返回一个 Navigator 对象的引用，可以用于请求运行当前代码的应用程序的相关信息。(MDN)
+
+    // navigator 最常用到的就是 userAgent 属性，通常简称为 UA。
+
+    //console.log(navigator.userAgent);
+    // 但也有比较有趣的属性，比如 onLine，这个属性可以用于判断网络状态。
+    console.log(navigator.onLine);
+
+
+    // Screen  返回当前window的screen对象。screen对象实现了Screen接口，它是个特殊的对象，返回当前渲染窗口中和屏幕有关的属性。(MDN)
+    var screenWidth = window.screen.width;
+    var screenHeight = window.screen.height;
+    console.log('分辨率: ' + screenWidth + 'x' + screenHeight);
+
+
+    // History
+    // window.history.back()  // 后退
+    // window.history.forward()  // 前进
+    // window.history.go(-2)  // 后退两页
+    // window.history.go(2)  // 前进两页
+    // window.history.go(0)  // 刷新当前页
+    // window.history.go()  // 刷新当前页
+    // window.history.go(1)  // 前进一页
+
+
+
+</script>
+</body>
+</html>
