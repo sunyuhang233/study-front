@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //alert('出错前');
+    // throw 语句用来抛出一个用户自定义的异常。(MDN)
+    //throw 用于抛出一个异常，这种异常通常是程序出现了不符合预期的错误。
+    // throw 抛出语句后的代码将不会执行。
+    //throw '发生了一个错误！';
+    //alert('出错后');
+
+    //try … catch 语句用于捕获异常，然后可以对异常进行处理。
+    // try {
+    //     alert('出错前');
+    //     throw '发生了一个错误！';
+    //     alert('出错后');
+    // } catch (e) {
+    //     alert("出错原因是" + e);
+    // }
+    /**
+     * 需要注意的是，以前 catch 后面的错误参数是必须接收的，否则会报错。
+     * 但 ES2019 中有一个提案，可以选择性的提供给 catch 参数，所以最新的 chrome 不传递错误参数也是可以的
+     * */
+
+    //try … catch … finally 语句用于捕获异常，然后可以对异常进行处理，最后执行 finally 语句。
+    // try {
+    //     alert('开始请求数据，loading 显示');
+    //     throw '没有网络';
+    //     alert('请求结果是：..编不下去了，反正到不了这里');
+    // } catch (e) {
+    //     alert('出现错误：' + e);
+    // } finally {
+    //     alert('关闭 loading');
+    // }
+
+    // 可以写条件的 catch 语句
+    // try {
+    //     throw 'error';
+    // } catch (e if e instanceof TypeError) {
+    //     console.log('TypeError');
+    // } catch (e if e instanceof ReferenceError) {
+    //     console.log('ReferenceError');
+    // } catch (e) {
+    //     console.log(e);
+    // }
+
+
+    try {
+        throw 'error';
+    } catch (e) {
+        if (e instanceof TypeError) {
+            console.log('TypeError');
+        } else if (e instanceof ReferenceError) {
+            console.log('ReferenceError');
+        } else {
+            console.log(e);
+        }
+    }
+
+    //  Error 对象
+    // 通过 Error 的构造器可以创建一个错误对象。当运行时错误产生时，Error的实例对象会被抛出。Error 对象也可用于用户自定义的异常的基础对象
+    try {
+        throw new Error('出错了');
+    } catch (e) {
+        console.log(e)
+    }
+
+    // 和大部分内置对象一样，Error 实例也可以不使用 new 关键字创建。
+    try {
+        throw Error('出错了233');
+    } catch (e) {
+        console.log("错误信息是：" + e.message)
+    }
+</script>
+</body>
+</html>
