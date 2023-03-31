@@ -42,7 +42,7 @@ console.log(counter.value); // 输出：2
 console.log(counter.count); // 输出：undefined
 
 
-// 回调函数几乎都用到了闭包的特性
+// 回调函数几乎都用到了闭包的 特性
 // 回调函数通常会用到上层作用域的变量，然后在某一情况下进行调用。
 var fn = function(cb) {
   console.log('异步操作开始');
