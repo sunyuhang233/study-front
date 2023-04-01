@@ -1,14 +1,18 @@
 <template>
   <header>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/">响应式相关API</RouterLink>
+    <RouterLink to="/computed">计算属性</RouterLink>
+    <RouterLink to="/cpn">组件</RouterLink>
   </header>
   <div class="main">
     <RouterView />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+const color = ref('skyblue')
+</script>
 
 <style scoped>
 header {
@@ -29,5 +33,7 @@ header a {
 .main {
   height: calc(100vh - 60px);
   padding: 20px;
+  /* v-bind绑定样式 */
+  color: v-bind('color');
 }
 </style>
