@@ -1,6 +1,5 @@
 <script setup>
 import { computed, reactive, ref, watch, watchEffect } from 'vue'
-import VueUse from './cpn/VueUse.vue'
 const obj = reactive({
   name: 'zhangsan',
   age: 18
@@ -103,7 +102,6 @@ const stopWatch = watchEffect(() => {
       <button @click="handleCountClick">修改值</button>
     </div>
   </div>
-  <VueUse />
 </template>
 
 <style scoped></style>

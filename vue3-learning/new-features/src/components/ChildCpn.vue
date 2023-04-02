@@ -24,6 +24,14 @@ function handleClick() {
 function handleClickList() {
   emit('update-list', ['a', 'b', 'c', 'd'])
 }
+
+function openAlert() {
+  alert('我是子组件导出的方法')
+}
+// 导出方法
+defineExpose({
+  openAlert
+})
 </script>
 
 <style scoped>

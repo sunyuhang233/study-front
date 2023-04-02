@@ -17,6 +17,31 @@ const router = createRouter({
       path: '/computed',
       name: 'computed',
       component: () => import('../views/ComputedView.vue')
+    },
+    {
+      path: '/hooks',
+      name: 'hooks',
+      component: () => import('../views/HooksView.vue')
+    },
+    {
+      path: '/slot',
+      name: 'slot',
+      component: () => import('../views/SlotView.vue')
+    },
+    {
+      path: '/other',
+      name: 'other',
+      component: () => import('../views/OtherView.vue')
+    },
+    {
+      path: '/model',
+      name: 'model',
+      component: () => import('../views/ModelView.vue')
+    },
+    {
+      path: '/directive',
+      name: 'directive',
+      component: () => import('../views/DirectiveView.vue')
     }
   ]
 })

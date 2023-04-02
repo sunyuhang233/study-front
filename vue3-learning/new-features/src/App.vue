@@ -3,6 +3,11 @@
     <RouterLink to="/">响应式相关API</RouterLink>
     <RouterLink to="/computed">计算属性</RouterLink>
     <RouterLink to="/cpn">组件</RouterLink>
+    <RouterLink to="/hooks">Hooks</RouterLink>
+    <RouterLink to="/model">升级Model</RouterLink>
+    <RouterLink to="/slot">插槽</RouterLink>
+    <RouterLink to="/directive">指令</RouterLink>
+    <RouterLink to="/other">其他</RouterLink>
   </header>
   <div class="main">
     <RouterView />
@@ -34,6 +39,6 @@ header a {
   height: calc(100vh - 60px);
   padding: 20px;
   /* v-bind绑定样式 */
-  color: v-bind('color');
+  /* color: v-bind('color'); */
 }
 </style>

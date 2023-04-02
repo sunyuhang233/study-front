@@ -8,4 +8,11 @@ const app = createApp(App)
 
 app.use(router)
 
+// 自定义指令
+app.directive('focus', {
+  mounted(el) {
+    el.focus()
+  }
+})
+
 app.mount('#app')
